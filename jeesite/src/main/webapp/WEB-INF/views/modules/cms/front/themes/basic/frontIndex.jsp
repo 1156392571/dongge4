@@ -9,6 +9,7 @@
 	<meta name="keywords" content="JeeSite ${site.keywords}" />
 </head>
 <body>
+	&nbsp;
     <div class="hero-unit" style="padding-bottom:35px;margin:10px 0;">
       <c:set var="article" value="${fnc:getArticle('2')}"/>
       <h1>${fns:abbr(article.title,28)}</h1><p></p>
