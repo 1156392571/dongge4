@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sc.dao.TScUserDao">
+    
+	<sql id="tScUserColumns">
+		a.id AS "id",
+		a.sc_name AS "scName",
+		a.sc_sex AS "scSex",
+		a.sc_phone AS "scPhone",
+		a.sc_qq AS "scQq",
+		a.sc_wx AS "scWx",
+		a.sc_createdate AS "scCreatedate",
+		a.sc_remarks AS "scRemarks",
+		a.sc_reserve1 AS "scReserve1",
+		a.sc_reserve2 AS "scReserve2",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tScUserJoins">
+	</sql>
+    
+	<select id="get" resultType="TScUser">
+		SELECT 
+			<include refid="tScUserColumns"/>
+		FROM t_sc_user a
+		<include refid="tScUserJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TScUser">
+		SELECT 
+			<include refid="tScUserColumns"/>
+		FROM t_sc_user a
+		<include refid="tScUserJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TScUser">
+		SELECT 
+			<include refid="tScUserColumns"/>
+		FROM t_sc_user a
+		<include refid="tScUserJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_sc_user(
+			id,
+			sc_name,
+			sc_sex,
+			sc_phone,
+			sc_qq,
+			sc_wx,
+			sc_createdate,
+			sc_remarks,
+			sc_reserve1,
+			sc_reserve2,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{scName},
+			#{scSex},
+			#{scPhone},
+			#{scQq},
+			#{scWx},
+			#{scCreatedate},
+			#{scRemarks},
+			#{scReserve1},
+			#{scReserve2},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_sc_user SET 	
+			sc_name = #{scName},
+			sc_sex = #{scSex},
+			sc_phone = #{scPhone},
+			sc_qq = #{scQq},
+			sc_wx = #{scWx},
+			sc_createdate = #{scCreatedate},
+			sc_remarks = #{scRemarks},
+			sc_reserve1 = #{scReserve1},
+			sc_reserve2 = #{scReserve2},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_sc_user SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
