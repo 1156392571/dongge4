@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sc.dao.TScShopDao">
+    
+	<sql id="tScShopColumns">
+		a.id AS "id",
+		a.shop_name AS "shopName",
+		a.shop_price AS "shopPrice",
+		a.shop_describe AS "shopDescribe",
+		a.shop_type AS "shopType",
+		a.shop_createdate AS "shopCreatedate",
+		a.shop_count AS "shopCount",
+		a.shop_remarks AS "shopRemarks",
+		a.shop_reserve1 AS "shopReserve1",
+		a.shop_reserve2 AS "shopReserve2",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tScShopJoins">
+	</sql>
+    
+	<select id="get" resultType="TScShop">
+		SELECT 
+			<include refid="tScShopColumns"/>
+		FROM t_sc_shop a
+		<include refid="tScShopJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TScShop">
+		SELECT 
+			<include refid="tScShopColumns"/>
+		FROM t_sc_shop a
+		<include refid="tScShopJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TScShop">
+		SELECT 
+			<include refid="tScShopColumns"/>
+		FROM t_sc_shop a
+		<include refid="tScShopJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_sc_shop(
+			id,
+			shop_name,
+			shop_price,
+			shop_describe,
+			shop_type,
+			shop_createdate,
+			shop_count,
+			shop_remarks,
+			shop_reserve1,
+			shop_reserve2,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{shopName},
+			#{shopPrice},
+			#{shopDescribe},
+			#{shopType},
+			#{shopCreatedate},
+			#{shopCount},
+			#{shopRemarks},
+			#{shopReserve1},
+			#{shopReserve2},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_sc_shop SET 	
+			shop_name = #{shopName},
+			shop_price = #{shopPrice},
+			shop_describe = #{shopDescribe},
+			shop_type = #{shopType},
+			shop_createdate = #{shopCreatedate},
+			shop_count = #{shopCount},
+			shop_remarks = #{shopRemarks},
+			shop_reserve1 = #{shopReserve1},
+			shop_reserve2 = #{shopReserve2},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_sc_shop SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

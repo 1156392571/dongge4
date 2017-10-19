@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sc.dao.TScOrderDao">
+    
+	<sql id="tScOrderColumns">
+		a.id AS "id",
+		a.user_id AS "userId",
+		a.shop_id AS "shopId",
+		a.shop_number AS "shopNumber",
+		a.shop_totalprice AS "shopTotalprice",
+		a.orderremarks AS "orderremarks",
+		a.paytype AS "paytype",
+		a.send_status AS "sendStatus",
+		a.status AS "status",
+		a.couriertype AS "couriertype",
+		a.couriernumber AS "couriernumber",
+		a.order_reserve1 AS "orderReserve1",
+		a.order_reserve2 AS "orderReserve2",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tScOrderJoins">
+	</sql>
+    
+	<select id="get" resultType="TScOrder">
+		SELECT 
+			<include refid="tScOrderColumns"/>
+		FROM t_sc_order a
+		<include refid="tScOrderJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TScOrder">
+		SELECT 
+			<include refid="tScOrderColumns"/>
+		FROM t_sc_order a
+		<include refid="tScOrderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TScOrder">
+		SELECT 
+			<include refid="tScOrderColumns"/>
+		FROM t_sc_order a
+		<include refid="tScOrderJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_sc_order(
+			id,
+			user_id,
+			shop_id,
+			shop_number,
+			shop_totalprice,
+			orderremarks,
+			paytype,
+			send_status,
+			status,
+			couriertype,
+			couriernumber,
+			order_reserve1,
+			order_reserve2,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{userId},
+			#{shopId},
+			#{shopNumber},
+			#{shopTotalprice},
+			#{orderremarks},
+			#{paytype},
+			#{sendStatus},
+			#{status},
+			#{couriertype},
+			#{couriernumber},
+			#{orderReserve1},
+			#{orderReserve2},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_sc_order SET 	
+			user_id = #{userId},
+			shop_id = #{shopId},
+			shop_number = #{shopNumber},
+			shop_totalprice = #{shopTotalprice},
+			orderremarks = #{orderremarks},
+			paytype = #{paytype},
+			send_status = #{sendStatus},
+			status = #{status},
+			couriertype = #{couriertype},
+			couriernumber = #{couriernumber},
+			order_reserve1 = #{orderReserve1},
+			order_reserve2 = #{orderReserve2},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_sc_order SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
