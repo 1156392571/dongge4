@@ -20,6 +20,7 @@ import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.sc.entity.TScShop;
+import com.thinkgem.jeesite.modules.sc.entity.TScShopSize;
 import com.thinkgem.jeesite.modules.sc.service.TScShopService;
 
 /**
@@ -51,6 +52,7 @@ public class TScShopController extends BaseController {
 	public String list(TScShop tScShop, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<TScShop> page = tScShopService.findPage(new Page<TScShop>(request, response), tScShop); 
 		model.addAttribute("page", page);
+		model.addAttribute("tScShop", tScShop);
 		return "modules/sc/tScShopList";
 	}
 
@@ -80,4 +82,17 @@ public class TScShopController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/sc/tScShop/?repage";
 	}
 
+	/**
+	 * 添加产品规格页面
+	 */
+	@RequiresPermissions("sc:tScShop:view")
+	@RequestMapping(value = "addshopsize")
+	public String addshopsize(TScShopSize tScShopSize, Model model) {
+		TScShop tScShop=tScShopService.get(tScShopSize.getScShopid());
+		tScShopSize.setScReserve4(tScShop.getShopName());
+		model.addAttribute("tScShopSize", tScShopSize);
+		return "modules/sc/tScShopSizeForm";
+	}
+	
+	
 }

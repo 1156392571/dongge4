@@ -144,12 +144,20 @@
 			return false;
 		}// </c:if>
 	</script>
+	<style type="text/css">
+		a:hover {text-decoration:none;}
+	</style>
 </head>
 <body>
 	<div id="main">
 		<div id="header" class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
+				<!-- 
+					<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
+				 -->
+				 <div class="brand">
+				 	<span id="productName"><a href="${pageContext.request.contextPath}/f" style="color: red ">sc首页</a></span>
+				 </div>
 				<ul id="userControl" class="nav pull-right">
 					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>
 					<li id="themeSwitch" class="dropdown">

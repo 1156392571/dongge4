@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sc.dao.TScShopSizeDao">
+    
+	<sql id="tScShopSizeColumns">
+		a.id AS "id",
+		a.sc_shopid AS "scShopid",
+		a.sc_shopsize AS "scShopsize",
+		a.sc_shopcount AS "scShopcount",
+		a.sc_shopcolor AS "scShopcolor",
+		a.sc_shopprice AS "scShopprice",
+		a.sc_photourl1 AS "scPhotourl1",
+		a.sc_photourl2 AS "scPhotourl2",
+		a.sc_photourl3 AS "scPhotourl3",
+		a.sc_remarks AS "scRemarks",
+		a.sc_reserve1 AS "scReserve1",
+		a.sc_reserve2 AS "scReserve2",
+		a.create_by AS "createBy.id",
+		a.sc_reserve3 AS "scReserve3",
+		a.sc_reserve4 AS "scReserve4",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="tScShopSizeJoins">
+	</sql>
+    
+	<select id="get" resultType="TScShopSize">
+		SELECT 
+			<include refid="tScShopSizeColumns"/>
+		FROM t_sc_shop_size a
+		<include refid="tScShopSizeJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="TScShopSize">
+		SELECT 
+			<include refid="tScShopSizeColumns"/>
+		FROM t_sc_shop_size a
+		<include refid="tScShopSizeJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="TScShopSize">
+		SELECT 
+			<include refid="tScShopSizeColumns"/>
+		FROM t_sc_shop_size a
+		<include refid="tScShopSizeJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_sc_shop_size(
+			id,
+			sc_shopid,
+			sc_shopsize,
+			sc_shopcount,
+			sc_shopcolor,
+			sc_shopprice,
+			sc_photourl1,
+			sc_photourl2,
+			sc_photourl3,
+			sc_remarks,
+			sc_reserve1,
+			sc_reserve2,
+			create_by,
+			sc_reserve3,
+			sc_reserve4,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{scShopid},
+			#{scShopsize},
+			#{scShopcount},
+			#{scShopcolor},
+			#{scShopprice},
+			#{scPhotourl1},
+			#{scPhotourl2},
+			#{scPhotourl3},
+			#{scRemarks},
+			#{scReserve1},
+			#{scReserve2},
+			#{createBy.id},
+			#{scReserve3},
+			#{scReserve4},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE t_sc_shop_size SET 	
+			sc_shopid = #{scShopid},
+			sc_shopsize = #{scShopsize},
+			sc_shopcount = #{scShopcount},
+			sc_shopcolor = #{scShopcolor},
+			sc_shopprice = #{scShopprice},
+			sc_photourl1 = #{scPhotourl1},
+			sc_photourl2 = #{scPhotourl2},
+			sc_photourl3 = #{scPhotourl3},
+			sc_remarks = #{scRemarks},
+			sc_reserve1 = #{scReserve1},
+			sc_reserve2 = #{scReserve2},
+			sc_reserve3 = #{scReserve3},
+			sc_reserve4 = #{scReserve4},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE t_sc_shop_size SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

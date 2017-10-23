@@ -1,0 +1,31 @@
+a:link {
+  text-decoration: none!important;
+}
+a:visited {
+  text-decoration: none!important;
+}
+a:hover {
+  text-decoration: none!important;
+}
+a:active {
+  text-decoration: none!important;
+}
+.sel_btn{
+  color:#fff;
+  height: 21px;
+  line-height: 21px;
+  padding: 0 11px;
+  background: #fff;
+  border-radius: 3px;
+  display: inline-block;
+  text-decoration: none;
+}
+.ch_blue{
+  background: #3daae9;
+}
+.ch_red{
+  background: red;
+}
+.ch_green{
+  background: #2FE7E7;
+}

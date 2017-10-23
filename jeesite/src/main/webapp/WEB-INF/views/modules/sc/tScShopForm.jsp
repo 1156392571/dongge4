@@ -24,6 +24,15 @@
 			});
 		});
 	</script>
+	<style type="text/css">
+		.input-medium{
+			width: 270px;
+		}
+		#s2id_shopType{
+			width: 284px;
+		}
+	</style>
+	
 </head>
 <body>
 	<ul class="nav nav-tabs">
@@ -40,29 +49,19 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">商品价格：</label>
-			<div class="controls">
-				<form:input path="shopPrice" htmlEscape="false" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">shop_describe：</label>
-			<div class="controls">
-				<form:input path="shopDescribe" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label">商品种类：</label>
 			<div class="controls">
-				<form:input path="shopType" htmlEscape="false" maxlength="1" class="input-xlarge "/>
+				<form:select path="shopType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('shopType')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
+		<!-- 
 		<div class="control-group">
-			<label class="control-label">商品上架时间：</label>
+			<label class="control-label">商品价格：</label>
 			<div class="controls">
-				<input name="shopCreatedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${tScShop.shopCreatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<form:input path="shopPrice" htmlEscape="false" class="input-xlarge"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -71,28 +70,25 @@
 				<form:input path="shopCount" htmlEscape="false" maxlength="11" class="input-xlarge "/>
 			</div>
 		</div>
+		 -->
+		<div class="control-group">
+			<label class="control-label">商品描述：</label>
+			<div class="controls">
+				<form:input path="shopDescribe" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">商品上架时间：</label>
+			<div class="controls">
+				<input name="shopCreatedate" type="text"  maxlength="20" class="input-medium Wdate "
+					value="<fmt:formatDate value="${tScShop.shopCreatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">商品备注：</label>
 			<div class="controls">
-				<form:input path="shopRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段1：</label>
-			<div class="controls">
-				<form:input path="shopReserve1" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">扩展字段2：</label>
-			<div class="controls">
-				<form:input path="shopReserve2" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">remarks：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+				<form:textarea path="shopRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

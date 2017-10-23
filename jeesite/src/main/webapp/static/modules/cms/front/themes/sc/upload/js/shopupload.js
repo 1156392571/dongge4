@@ -27,7 +27,7 @@ jQuery(function() {
         }
     	
     	//循环页面中每个上传域
-    	$('.container').each(function(index){
+    	$('.upload_container').each(function(index){
     		
             var statusBar=$(this).find('.statusBar');//再次添加按钮容器实例
             
@@ -41,7 +41,7 @@ jQuery(function() {
     		
     		var queueList=$(this).find('.queueList');//拖拽容器实例
     		
-    		var filePicker2=$(this).find('#filePicker2');//继续添加按钮实例
+    		var filePicker2=$(this).find('#filePicker2_'+index);//继续添加按钮实例
     		
     		// 图片容器       	
     		var queue = $('<ul class="filelist"></ul>').appendTo( queueList);
@@ -106,11 +106,12 @@ jQuery(function() {
             
             //加载的时候
             uploader_1[index].on('ready',function(){
+            	state = 'pedding';
             	var fileinfo="";
             	if(index==0){
-            		var fileinfo = document.getElementById("stReserve1").value;
+            		var fileinfo = document.getElementById("scReserve1").value;
             	}else if(index==1){
-            		var fileinfo = document.getElementById("stReserve2").value;
+            		var fileinfo = document.getElementById("scReserve2").value;
             	}else{
             		
             	}
@@ -437,11 +438,11 @@ jQuery(function() {
             	var fileinfo = response.fileinfo; //上传图片的路径
             	//判断图片地址存放的位置
             	if(index==0){
-            		document.getElementById("stTeampic").value = realurl;
-            		document.getElementById("stReserve1").value = fileinfo;
+            		document.getElementById("scPhotourl1").value = realurl;
+            		document.getElementById("scReserve1").value = fileinfo;
             	}else{
-            		document.getElementById("stPropic").value = realurl;
-            		document.getElementById("stReserve2").value = fileinfo;
+            		document.getElementById("scPhotourl2").value = realurl;
+            		document.getElementById("scReserve2").value = fileinfo;
             	}
             	alert("上传成功");
             });
