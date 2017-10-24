@@ -36,6 +36,8 @@ import com.thinkgem.jeesite.modules.cms.service.CommentService;
 import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
+import com.thinkgem.jeesite.modules.sc.entity.TScShop;
+import com.thinkgem.jeesite.modules.sc.service.TScShopService;
 
 /**
  * 网站Controller
@@ -58,6 +60,8 @@ public class FrontController extends BaseController{
 	private CategoryService categoryService;
 	@Autowired
 	private SiteService siteService;
+	@Autowired
+	private TScShopService tScShopService;
 	
 	/**
 	 * 网站首页
@@ -67,6 +71,10 @@ public class FrontController extends BaseController{
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
 		model.addAttribute("isIndex", true);
+		//获取服装类型列表
+		TScShop tScShop=new TScShop();
+		List<TScShop> tScShop_type1=tScShopService.findByType("1");
+		model.addAttribute("tScShop_type1", tScShop_type1);
 		return "modules/cms/front/themes/"+site.getTheme()+"/sc/frontIndex";
 	}
 	

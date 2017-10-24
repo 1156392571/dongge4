@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.sc.dao;
 
+import java.util.List;
+
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.sc.entity.TScShop;
@@ -14,5 +16,7 @@ import com.thinkgem.jeesite.modules.sc.entity.TScShop;
  */
 @MyBatisDao
 public interface TScShopDao extends CrudDao<TScShop> {
+
+	List<TScShop> findByType(String shopType);
 	
 }

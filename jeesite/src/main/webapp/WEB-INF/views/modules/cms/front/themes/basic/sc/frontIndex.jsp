@@ -217,6 +217,29 @@ h3 {
 	</div>
 	
 	
+	<!-- 团队项目 -->
+	<div class="bs-example">
+		<h3 class="text-center">
+			<small><a href="${ctx}/teamList?pageSize=8" class="pull-right">更多>></a></small> 服装
+		</h3>
+		<div class="row">
+			<c:forEach items="${tScShop_type1}" var="tScShop">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="${ctxStaticFront}/themes/sc/1.jpg" alt="Generic placeholder thumbnail">
+						<div class="caption">
+							<h3>${tScShop.shopName}</h3>
+							<p>${tScShop.shopName}</p>
+							<p style="height: 34px;">
+								<a href="${ctx}/viewTeam?Teamid=${tScTeamList.id}" class="btn btn-primary" role="button" style="float: right;">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	
 
 
 </body>

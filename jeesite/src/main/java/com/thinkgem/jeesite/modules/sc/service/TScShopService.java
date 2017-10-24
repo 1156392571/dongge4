@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.sc.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,8 @@ import com.thinkgem.jeesite.modules.sc.dao.TScShopDao;
 @Service
 @Transactional(readOnly = true)
 public class TScShopService extends CrudService<TScShopDao, TScShop> {
-
+	@Autowired TScShopDao tScShopDao;
+	
 	public TScShop get(String id) {
 		return super.get(id);
 	}
@@ -42,6 +44,10 @@ public class TScShopService extends CrudService<TScShopDao, TScShop> {
 	@Transactional(readOnly = false)
 	public void delete(TScShop tScShop) {
 		super.delete(tScShop);
+	}
+
+	public List<TScShop> findByType(String shopType) {
+		return tScShopDao.findByType(shopType);
 	}
 	
 }

@@ -129,4 +129,13 @@
 		WHERE id = #{id}
 	</update>
 	
+	<select id="findByType" resultType="TScShop">
+		select <include refid="tScShopColumns"/>
+		from t_sc_shop a 
+		<where>
+			a.del_flag = '0'
+			and  a.shop_type=#{shopType} 
+			limit 3
+		</where>
+	</select>
 </mapper>
