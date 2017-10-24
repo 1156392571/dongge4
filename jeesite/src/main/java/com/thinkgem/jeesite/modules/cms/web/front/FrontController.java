@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,9 @@ import com.thinkgem.jeesite.modules.cms.service.LinkService;
 import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.sc.entity.TScShop;
+import com.thinkgem.jeesite.modules.sc.entity.TScShopSize;
 import com.thinkgem.jeesite.modules.sc.service.TScShopService;
+import com.thinkgem.jeesite.modules.sc.service.TScShopSizeService;
 
 /**
  * 网站Controller
@@ -62,6 +65,8 @@ public class FrontController extends BaseController{
 	private SiteService siteService;
 	@Autowired
 	private TScShopService tScShopService;
+	@Autowired
+	private TScShopSizeService tScShopSizeService;
 	
 	/**
 	 * 网站首页
@@ -72,9 +77,12 @@ public class FrontController extends BaseController{
 		model.addAttribute("site", site);
 		model.addAttribute("isIndex", true);
 		//获取服装类型列表
-		TScShop tScShop=new TScShop();
 		List<TScShop> tScShop_type1=tScShopService.findByType("1");
+		List<TScShop> tScShop_type2=tScShopService.findByType("2");
+		List<TScShop> tScShop_type3=tScShopService.findByType("3");
 		model.addAttribute("tScShop_type1", tScShop_type1);
+		model.addAttribute("tScShop_type2", tScShop_type2);
+		model.addAttribute("tScShop_type3", tScShop_type3);
 		return "modules/cms/front/themes/"+site.getTheme()+"/sc/frontIndex";
 	}
 	
@@ -347,5 +355,21 @@ public class FrontController extends BaseController{
             return article.getCustomContentView();
         }
     }
+    
+    /**
+     * 查看商品的详细信息
+     */
+	@RequestMapping(value = "viewshopdetail")
+	public String viewshopdetail(String id, Model model) {
+		TScShop tScShop=tScShopService.get(id);
+		TScShopSize tScShopSize=new TScShopSize();
+		tScShopSize.setScShopid(id);
+		List<TScShopSize> list=tScShopSizeService.findList(tScShopSize);
+		model.addAttribute("list", list);
+		model.addAttribute("tScShop", tScShop);
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		model.addAttribute("site", site);
+		return "modules/cms/front/themes/"+site.getTheme()+"/sc/frontViewShopDetail";
+	}
 	
 }

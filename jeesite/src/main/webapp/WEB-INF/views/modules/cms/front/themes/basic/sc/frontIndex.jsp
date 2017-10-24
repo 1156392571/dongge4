@@ -217,7 +217,7 @@ h3 {
 	</div>
 	
 	
-	<!-- 团队项目 -->
+	<!-- 服装展示区域 -->
 	<div class="bs-example">
 		<h3 class="text-center">
 			<small><a href="${ctx}/teamList?pageSize=8" class="pull-right">更多>></a></small> 服装
@@ -231,7 +231,51 @@ h3 {
 							<h3>${tScShop.shopName}</h3>
 							<p>${tScShop.shopName}</p>
 							<p style="height: 34px;">
+								<a href="${ctx}/viewshopdetail?id=${tScShop.id}" class="btn btn-primary" role="button" style="float: right;">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<!-- 鞋子展示区域 -->
+	<div class="bs-example">
+		<h3 class="text-center">
+			<small><a href="${ctx}/teamList?pageSize=8" class="pull-right">更多>></a></small> 鞋子
+		</h3>
+		<div class="row">
+			<c:forEach items="${tScShop_type2}" var="tScShop">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="${ctxStaticFront}/themes/sc/1.jpg" alt="Generic placeholder thumbnail">
+						<div class="caption">
+							<h3>${tScShop.shopName}</h3>
+							<p>${tScShop.shopName}</p>
+							<p style="height: 34px;">
 								<a href="${ctx}/viewTeam?Teamid=${tScTeamList.id}" class="btn btn-primary" role="button" style="float: right;">详情</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+	<!-- 首饰展示区域 -->
+	<div class="bs-example">
+		<h3 class="text-center">
+			<small><a href="${ctx}/teamList?pageSize=8" class="pull-right">更多>></a></small> 首饰
+		</h3>
+		<div class="row">
+			<c:forEach items="${tScShop_type3}" var="tScShop">
+				<div class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img src="${ctxStaticFront}/themes/sc/1.jpg" alt="Generic placeholder thumbnail">
+						<div class="caption">
+							<h3>${tScShop.shopName}</h3>
+							<p>${tScShop.shopName}</p>
+							<p style="height: 34px;">
+								<a href="${ctx}/viewShop?shopid=${tScTeamList.id}" class="btn btn-primary" role="button" style="float: right;">详情</a>
 							</p>
 						</div>
 					</div>
