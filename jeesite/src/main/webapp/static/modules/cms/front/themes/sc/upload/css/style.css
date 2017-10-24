@@ -9,8 +9,8 @@ time, mark, audio, video, input  {
     padding: 0;
     border: none;
     outline: 0;
-    font-size: 100%;
-    font: inherit;
+/*     font-size: 100%; */
+/*     font: inherit; */
     vertical-align: baseline;
 }
 

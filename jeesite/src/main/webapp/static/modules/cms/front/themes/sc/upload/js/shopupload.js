@@ -109,11 +109,11 @@ jQuery(function() {
             	state = 'pedding';
             	var fileinfo="";
             	if(index==0){
-            		var fileinfo = document.getElementById("scReserve1").value;
+            		fileinfo = document.getElementById("scReserve1").value;
             	}else if(index==1){
-            		var fileinfo = document.getElementById("scReserve2").value;
-            	}else{
-            		
+            		fileinfo = document.getElementById("scReserve2").value;
+            	}else if(index==2){
+            		fileinfo = document.getElementById("scReserve3").value;
             	}
             	if(fileinfo!==""){
 	//            	var fileinfo = "WU_FILE_0,123.jpg,image/jpeg,8433,uploads\\1\\project\\20171013\\1507866273084_123.jpg";
@@ -440,11 +440,13 @@ jQuery(function() {
             	if(index==0){
             		document.getElementById("scPhotourl1").value = realurl;
             		document.getElementById("scReserve1").value = fileinfo;
-            	}else{
+            	}else if(index==1){
             		document.getElementById("scPhotourl2").value = realurl;
             		document.getElementById("scReserve2").value = fileinfo;
+            	}else if(index==2){
+            		document.getElementById("scPhotourl3").value = realurl;
+            		document.getElementById("scReserve3").value = fileinfo;
             	}
-            	alert("上传成功");
             });
             
             // 所有文件上传成功后调用        

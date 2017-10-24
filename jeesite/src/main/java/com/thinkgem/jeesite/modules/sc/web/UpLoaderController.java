@@ -53,11 +53,14 @@ public class UpLoaderController
         String ImageClass = "";
         if(("1").equals(ImageType)){
             String token = request.getParameter("token");
+            ImageClass="shopSize";
+            /*
             if(("0").equals(token)){
                 ImageClass =  "project";
             }else{
                 ImageClass =  "team";
             }
+            */
         }else if(("2").equals(ImageType)){
             ImageClass =  "banner";
         }else if(("3").equals(ImageType)){

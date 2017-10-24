@@ -28,16 +28,17 @@
 		input:read-only{
 			background-color: #fff;
 		}
-	
+		#s2id_scShopsize{
+			width: 284px;
+		}
+		#s2id_scShopcolor{
+			width: 284px;
+		}
 	</style>
 	
 	<link href="${ctxStatic}/modules/cms/front/themes/sc/upload/css/webuploader.css" type="text/css" rel="stylesheet" />
 	<link href="${ctxStatic}/modules/cms/front/themes/sc/upload/css/style.css" type="text/css" rel="stylesheet" />
-
-	<script src="${ctxStatic}/modules/cms/front/themes/sc/upload/js/jquery-1.9.min.js" type="text/javascript"></script>
 	<script src="${ctxStatic}/modules/cms/front/themes/sc/upload/js/webuploader.js" type="text/javascript"></script>
-	<script src="${ctxStatic}/modules/cms/front/themes/sc/upload/js/jquery.sortable.js" type="text/javascript"></script>
-	
 	<script src="${ctxStatic}/modules/cms/front/themes/sc/upload/js/shopupload.js" type="text/javascript"></script>
 </head>
 <body>
@@ -59,19 +60,25 @@
 		<div class="control-group">
 			<label class="control-label">商品的规格：</label>
 			<div class="controls">
-				<form:input path="scShopsize" htmlEscape="false" maxlength="45" class="input-xlarge "/>
+				<form:select path="scShopsize" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('scShopsize')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">此规格下库存量：</label>
 			<div class="controls">
-				<form:input path="scShopcount" htmlEscape="false" maxlength="45" class="input-xlarge "/>
+				<form:input path="scShopcount" htmlEscape="false" maxlength="45" class="input-xlarge digits"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">商品颜色类型：</label>
 			<div class="controls">
-				<form:input path="scShopcolor" htmlEscape="false" maxlength="1" class="input-xlarge "/>
+				<form:select path="scShopcolor" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('scShopcolor')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">
@@ -81,16 +88,19 @@
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">商品图片1路径：</label>
-			<div class="controls">
-				<form:input path="scPhotourl1" htmlEscape="false" maxlength="255" class="input-xlarge" readonly="true"/>
-			</div>
-		</div>
+		<!-- ====================================================================================================== -->	
 		<form:hidden path="scReserve1"/>
-		<!-- 这里是图片1上传的地方 -->
+		<form:hidden path="scPhotourl1"/>
+		<!-- 这里是图片1上传的地方
+			<div class="control-group">
+				<label class="control-label">商品图片1路径：</label>
+				<div class="controls">
+					<form:input path="scPhotourl1" htmlEscape="false" maxlength="255" class="input-xlarge" readonly="true"/>
+				</div>
+			</div>
+		 -->
 		<div class="control-group">
-			<label class="control-label">上传图片：</label>
+			<label class="control-label">图片1：</label>
 				<div class="controls">
 					<div class="width_auto" style="width: 580px;">
 					    <div class="upload_container" >
@@ -115,16 +125,18 @@
 				</div>
 		</div>
 		<!-- ====================================================================================================== -->	
-		<form:hidden path="scReserve1"/>
-		<!-- 这里是图片2上传的地方 -->
+		<form:hidden path="scReserve2"/>
+		<form:hidden path="scPhotourl2"/>
+		<!-- 这里是图片2上传的地方
 		<div class="control-group">
 			<label class="control-label">商品图片2路径：</label>
 			<div class="controls">
 				<form:input path="scPhotourl2" htmlEscape="false" maxlength="255" class="input-xlarge" readonly="true"/>
 			</div>
 		</div>
+		 -->
 		<div class="control-group">
-			<label class="control-label">上传图片：</label>
+			<label class="control-label">图片2：</label>
 				<div class="controls">
 					<div class="width_auto" style="width: 580px;">
 					    <div class="upload_container" >
@@ -150,16 +162,18 @@
 		</div>
 		
 		<!-- ====================================================================================================== -->	
-		<form:hidden path="scReserve1"/>
-		<!-- 这里是图片3上传的地方 -->
+		<form:hidden path="scReserve3"/>
+		<form:hidden path="scPhotourl3"/>
+		<!-- 这里是图片3上传的地方 
 		<div class="control-group">
 			<label class="control-label">商品图片3路径：</label>
 			<div class="controls">
 				<form:input path="scPhotourl3" htmlEscape="false" maxlength="255" class="input-xlarge" readonly="true"/>
 			</div>
 		</div>
+		-->
 		<div class="control-group">
-			<label class="control-label">上传图片：</label>
+			<label class="control-label">图片3：</label>
 				<div class="controls">
 					<div class="width_auto" style="width: 580px;">
 					    <div class="upload_container" >
@@ -186,11 +200,12 @@
 		<div class="control-group">
 			<label class="control-label">备注：</label>
 			<div class="controls">
-				<form:input path="scRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:textarea path="scRemarks" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">
 			<shiro:hasPermission name="sc:tScShopSize:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
+<!-- 			<input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp; -->
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>

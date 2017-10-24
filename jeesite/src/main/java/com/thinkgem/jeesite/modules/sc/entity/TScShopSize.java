@@ -82,7 +82,7 @@ public class TScShopSize extends DataEntity<TScShopSize> {
 		this.scShopprice = scShopprice;
 	}
 	
-	@Length(min=1, max=45, message="图片路径1长度必须介于 1 和 45 之间")
+	@Length(min=1, max=255, message="图片路径1长度必须介于 1 和 255 之间")
 	public String getScPhotourl1() {
 		return scPhotourl1;
 	}
@@ -91,7 +91,7 @@ public class TScShopSize extends DataEntity<TScShopSize> {
 		this.scPhotourl1 = scPhotourl1;
 	}
 	
-	@Length(min=1, max=45, message="图片路径2长度必须介于 1 和 45 之间")
+	@Length(min=1, max=255, message="图片路径2长度必须介于 1 和 255 之间")
 	public String getScPhotourl2() {
 		return scPhotourl2;
 	}
@@ -100,7 +100,7 @@ public class TScShopSize extends DataEntity<TScShopSize> {
 		this.scPhotourl2 = scPhotourl2;
 	}
 	
-	@Length(min=1, max=45, message="图片路径3长度必须介于 1 和 45 之间")
+	@Length(min=1, max=255, message="图片路径3长度必须介于 1 和 255 之间")
 	public String getScPhotourl3() {
 		return scPhotourl3;
 	}

@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.sc.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +21,9 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.sc.entity.TScShop;
 import com.thinkgem.jeesite.modules.sc.entity.TScShopSize;
+import com.thinkgem.jeesite.modules.sc.service.TScShopService;
 import com.thinkgem.jeesite.modules.sc.service.TScShopSizeService;
 
 /**
@@ -33,6 +37,8 @@ public class TScShopSizeController extends BaseController {
 
 	@Autowired
 	private TScShopSizeService tScShopSizeService;
+	@Autowired
+	private TScShopService tScShopService;
 	
 	@ModelAttribute
 	public TScShopSize get(@RequestParam(required=false) String id) {
@@ -51,6 +57,11 @@ public class TScShopSizeController extends BaseController {
 	public String list(TScShopSize tScShopSize, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<TScShopSize> page = tScShopSizeService.findPage(new Page<TScShopSize>(request, response), tScShopSize); 
 		model.addAttribute("page", page);
+		model.addAttribute("tScShopSize", tScShopSize);
+		//获取商品名称列表
+		TScShop tScShop=new TScShop();
+		List<TScShop> list=tScShopService.findList(tScShop);
+		model.addAttribute("list", list);
 		return "modules/sc/tScShopSizeList";
 	}
 

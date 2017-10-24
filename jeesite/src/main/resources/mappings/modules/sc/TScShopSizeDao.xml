@@ -61,6 +61,18 @@
 		<include refid="tScShopSizeJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="scShopid !=null and scShopid !=''">
+				and a.sc_shopid=#{scShopid}
+			</if>
+			<if test="scShopsize !=null and scShopsize !=''">
+				and a.sc_shopsize=#{scShopsize}
+			</if>
+			<if test="scShopcount !=null and scShopcount !=''">
+				and a.sc_shopcount=#{scShopcount}
+			</if>
+			<if test="scShopprice !=null and scShopprice !=''">
+				and a.sc_shopprice=#{scShopprice}
+			</if>
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
