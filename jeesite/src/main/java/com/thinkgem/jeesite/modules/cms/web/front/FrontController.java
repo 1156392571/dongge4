@@ -365,7 +365,7 @@ public class FrontController extends BaseController{
 		TScShopSize tScShopSize=new TScShopSize();
 		tScShopSize.setScShopid(id);
 		List<TScShopSize> list=tScShopSizeService.findList(tScShopSize);
-		model.addAttribute("list", list);
+		model.addAttribute("list",list);
 		model.addAttribute("tScShop", tScShop);
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
