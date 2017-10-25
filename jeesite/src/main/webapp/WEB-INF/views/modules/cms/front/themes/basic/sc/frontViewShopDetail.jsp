@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>团队项目详情</title>
+<title>商品详情</title>
 <meta name="decorator" content="cms_default_${site.theme}" />
 <meta name="description" content="${category.description}" />
 <meta name="keywords" content="${category.keywords}" />
@@ -14,7 +14,7 @@
 <!-- 轮播图片 -->
 <link rel="stylesheet" href="${ctxStaticFront}/themes/sc/tplb/pageSwitch.min.css" />
 <script src="${ctxStaticFront}/themes/sc/tplb/pageSwitch.min.js" type="text/javascript"></script>
-<%-- <link rel="stylesheet" href="${ctxStatic}/style/base.css" /> --%>
+<link rel="stylesheet" href="${ctxStatic}/style/base.css" />
 
 <style type="text/css">
 input:read-only{
@@ -116,24 +116,52 @@ h3 {
 /*
 去掉li前面的圆点
 */
-ul li{
+#lilist li{
+	width:100px;
 	list-style-type: none;
 	float: left;
 }
+#lilist1 li{
+	width:100px;
+	list-style-type: none;
+	float: left;
+}
+
 .ulcss{
-	margin-top:30px;
 	width: 200px;
 	margin-left: 50px;
 }
 
 .licss{
-  width:50px;
+  width:100px;
   height: 21px;
   border:1px solid #CBCBCF;
   margin-left:10px;
   background: #fff;
   border-radius:3px;
   text-align: center;
+}
+
+.number{
+	width: 50px;
+	height: 30px;
+
+}
+
+.bugshop{
+	height: 38px;
+	width: 140px;
+	text-align: center;
+	font-size: 16px;
+	line-height:38px;
+}
+.bugnumber{
+	color:red;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #ccc;
+	background-color: #ededed;
+	text-align: center;
 }
 </style>
 <script type="text/javascript">
@@ -189,7 +217,7 @@ ul li{
 
 </head>
 <body>
-	<h3 style="margin-left: 250px;">团队信息</h3>
+	<h3 style="margin-left: 250px;">商品信息</h3>
 	<!-- 商城介绍 -->
 	<div class="bs-example">
 		<div class="row">
@@ -209,20 +237,44 @@ ul li{
 						</div>
 					</div>
 				</div>
+				<div>
+					<span>
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_1.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+					</span>
+					<span>
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_2.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+					</span>
+					<span>
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_3.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+					</span>
+				
+				</div>
 			</div>
 			<div class="col-sm-12 col-md-6">
-				<ul id="lilist" class="ulcss ulcss_1">
+				<h5>${tScShop.shopName}</h5>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<font>${tScShop.shopDescribe}</font>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				价格：<font>￥299</font>
+			</div>
+			
+			<div class="col-sm-12 col-md-6">
+			<div style="float: left">尺码：</div>
+				<ul id="lilist" class="ulcss ulcss_1" style="float: left">
 					<c:forEach items="${list}" var="list">
 						<li>
-							<p id="${list.id}_1"  data-list="0" data-${list.id}_1="0" class="licss licss_1" onclick="changecolor('${list.id}',1)">
+							<span id="${list.id}_1" data-${list.id}_1="0" class="licss licss_1" onclick="changecolor('${list.id}',1)">
 								${fns:getDictLabel(list.scShopsize, 'scShopsize', '')}
-							</p>
+							</span>
 						</li>
 					</c:forEach>
 				</ul>
 			</div>
 			<div class="col-sm-12 col-md-6">
-				<ul class="ulcss ulcss_2">
+			<div style="float: left">颜色：</div>
+				<ul id="lilist1" class="ulcss ulcss_2">
 					<c:forEach items="${list}" var="list">
 						<li>
 							<p id="${list.id}_2" data-${list.id}_2="0" class="licss licss_2" onclick="changecolor('${list.id}',2)">
@@ -232,6 +284,20 @@ ul li{
 					</c:forEach>
 				</ul>
 			</div>
+			<div class="col-sm-12 col-md-6">
+				<span>数量：</span>
+				<span><a class="sel_btn bugnumber">-</a><input class="number" type="text" style="height:28px;margin-bottom:0px; "/><a>+</a></span>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<div style="float: left">
+					<a class="sel_btn bugshop" style="background-color: #F0CAB6;margin-right: 10px;color:#E5511D;">立即购买</a>
+				</div>
+				<div style="float: left">
+					<a class="sel_btn bugshop" style="background-color: #E5511D">加入购物车</a>
+				</div>
+			</div>
+			
+			
 		</div>
 	</div>
 </body>
