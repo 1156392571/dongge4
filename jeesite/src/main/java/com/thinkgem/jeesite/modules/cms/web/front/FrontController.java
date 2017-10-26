@@ -369,6 +369,7 @@ public class FrontController extends BaseController{
 		model.addAttribute("tScShop", tScShop);
 		Site site = CmsUtils.getSite(Site.defaultSiteId());
 		model.addAttribute("site", site);
+		//frontViewShopDetail.jsp    frontShopdetails
 		return "modules/cms/front/themes/"+site.getTheme()+"/sc/frontViewShopDetail";
 	}
 	

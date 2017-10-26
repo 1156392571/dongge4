@@ -163,6 +163,62 @@ h3 {
 	background-color: #ededed;
 	text-align: center;
 }
+.col-md-6{
+	padding-top: 20px;
+}
+/*
+*数量的加减样式
+*/
+p.p_num {
+    width: 78px;
+    height: 24px;
+    border-top: solid 1px #d0d0d0;
+    position: relative;
+    border-bottom: solid 1px #d0d0d0;
+    margin-top: -3px;
+}
+ 
+span.sy_minus,span.sy_plus {
+    width: 15px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 0px;
+    font-size: 14px;
+    border: solid 1px #d0d0d0;
+    background: #ebebeb;
+    cursor: pointer;
+    border-top: none;
+    border-bottom: none;
+}
+ 
+span.sy_minus {
+    left: 0px;
+}
+ 
+span.sy_plus {
+    right: 0px;
+}
+ 
+input.sy_num {
+    width: 44px;
+    height: 18px;
+    line-height: 24px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 17px;
+}
+ 
+span.sy_num {
+    padding: 5px 8px;
+    border: solid 1px #d0d0d0;
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 	function changecolor(id,index){
@@ -171,16 +227,10 @@ h3 {
 		var pAry=document.getElementById("lilist").getElementsByTagName("p");
 		for(var i=0;i<pAry.length;i++){
 			 if(pAry[i].id==pid){
-				 if(aa=="1"){
-						$("#"+id+"_"+index).attr("data-"+id+"_"+index,"0");
-						$(".licss_"+index).css("border","1px solid #CBCBCF");
-					}else{
-						$("#"+id+"_"+index).attr("data-"+id+"_"+index,"1");
-						$(".licss_"+index).css("border","1px solid #CBCBCF");
-						$("#"+id+"_"+index).css("border","1px solid red");
-					}
+				 //
+				 alert("==");
 			 }else{
-				 
+				 alert("--"); 
 			 }
 		}
 		
@@ -233,19 +283,19 @@ h3 {
 						</c:forEach>
 						 -->
 						<div class="section">
-								<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_1.jpg" alt="" style="height: 100%;width: 100%">
+								<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_8.jpg" alt="" style="height: 100%;width: 100%">
 						</div>
 					</div>
 				</div>
 				<div>
 					<span>
-						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_1.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_8.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
 					</span>
 					<span>
-						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_2.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_8.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
 					</span>
 					<span>
-						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_3.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
+						<img src="${pageContext.request.contextPath}/static/modules/cms/front/themes/sc/friut_8.jpg" alt="" style="height: 60px;width: 60px;margin-right: 10px;">
 					</span>
 				
 				</div>
@@ -286,7 +336,12 @@ h3 {
 			</div>
 			<div class="col-sm-12 col-md-6">
 				<span>数量：</span>
-				<span><a class="sel_btn bugnumber">-</a><input class="number" type="text" style="height:28px;margin-bottom:0px; "/><a>+</a></span>
+<!-- 				<span><a class="sel_btn bugnumber">-</a><input class="number" type="text" style="height:28px;margin-bottom:0px; "/><a>+</a></span> -->
+			<p class="p_num">
+	            <span class="sy_minus" id="sy_minus_gid1">-</span> 
+	            <input class="sy_num" id="sy_num_gid1" readonly="readonly" type="text" name="number1" value="1" /> 
+	            <span class="sy_plus" id="sy_plus_gid1">+</span>
+        	</p>
 			</div>
 			<div class="col-sm-12 col-md-6">
 				<div style="float: left">
