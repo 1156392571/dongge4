@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>商城用户表管理</title>
+	<title>用户信息表管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,8 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/sc/tScUser/">商城用户表列表</a></li>
-		<shiro:hasPermission name="sc:tScUser:edit"><li><a href="${ctx}/sc/tScUser/form">商城用户表添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/sc/tScUser/">用户信息表列表</a></li>
+		<shiro:hasPermission name="sc:tScUser:edit"><li><a href="${ctx}/sc/tScUser/form">用户信息表添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="tScUser" action="${ctx}/sc/tScUser/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -49,7 +49,7 @@
 				</td>
 				<shiro:hasPermission name="sc:tScUser:edit"><td>
     				<a href="${ctx}/sc/tScUser/form?id=${tScUser.id}">修改</a>
-					<a href="${ctx}/sc/tScUser/delete?id=${tScUser.id}" onclick="return confirmx('确认要删除该商城用户表吗？', this.href)">删除</a>
+					<a href="${ctx}/sc/tScUser/delete?id=${tScUser.id}" onclick="return confirmx('确认要删除该用户信息表吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

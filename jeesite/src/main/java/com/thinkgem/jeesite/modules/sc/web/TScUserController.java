@@ -23,9 +23,9 @@ import com.thinkgem.jeesite.modules.sc.entity.TScUser;
 import com.thinkgem.jeesite.modules.sc.service.TScUserService;
 
 /**
- * 商城用户表Controller
+ * 用户信息表Controller
  * @author dongge
- * @version 2017-10-18
+ * @version 2017-10-30
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sc/tScUser")
@@ -68,7 +68,7 @@ public class TScUserController extends BaseController {
 			return form(tScUser, model);
 		}
 		tScUserService.save(tScUser);
-		addMessage(redirectAttributes, "保存商城用户表成功");
+		addMessage(redirectAttributes, "保存用户信息表成功");
 		return "redirect:"+Global.getAdminPath()+"/sc/tScUser/?repage";
 	}
 	
@@ -76,7 +76,7 @@ public class TScUserController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(TScUser tScUser, RedirectAttributes redirectAttributes) {
 		tScUserService.delete(tScUser);
-		addMessage(redirectAttributes, "删除商城用户表成功");
+		addMessage(redirectAttributes, "删除用户信息表成功");
 		return "redirect:"+Global.getAdminPath()+"/sc/tScUser/?repage";
 	}
 

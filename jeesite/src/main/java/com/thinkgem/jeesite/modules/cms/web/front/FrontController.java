@@ -39,8 +39,10 @@ import com.thinkgem.jeesite.modules.cms.service.SiteService;
 import com.thinkgem.jeesite.modules.cms.utils.CmsUtils;
 import com.thinkgem.jeesite.modules.sc.entity.TScShop;
 import com.thinkgem.jeesite.modules.sc.entity.TScShopSize;
+import com.thinkgem.jeesite.modules.sc.entity.TScUser;
 import com.thinkgem.jeesite.modules.sc.service.TScShopService;
 import com.thinkgem.jeesite.modules.sc.service.TScShopSizeService;
+import com.thinkgem.jeesite.modules.sys.entity.User;
 
 /**
  * 网站Controller
@@ -373,4 +375,23 @@ public class FrontController extends BaseController{
 		return "modules/cms/front/themes/"+site.getTheme()+"/sc/frontViewShopDetail";
 	}
 	
+	/**
+	 * 跳转到登录页面
+	 */
+	@RequestMapping(value = "userlogin")
+	public String userlogin(TScUser tScUser,Model model) {
+		model.addAttribute("tScUser", tScUser);
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		return "modules/cms/front/themes/"+site.getTheme()+"/sc/userlogin";
+	}
+	
+	/**
+	 * 跳转到登录页面
+	 */
+	@RequestMapping(value = "userReg")
+	public String userReg(TScUser tScUser,Model model) {
+		model.addAttribute("tScUser", tScUser);
+		Site site = CmsUtils.getSite(Site.defaultSiteId());
+		return "modules/cms/front/themes/"+site.getTheme()+"/sc/userReg";
+	}
 }

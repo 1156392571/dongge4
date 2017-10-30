@@ -8,9 +8,9 @@ import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.sc.entity.TScUser;
 
 /**
- * 商城用户表DAO接口
+ * 用户信息表DAO接口
  * @author dongge
- * @version 2017-10-18
+ * @version 2017-10-30
  */
 @MyBatisDao
 public interface TScUserDao extends CrudDao<TScUser> {

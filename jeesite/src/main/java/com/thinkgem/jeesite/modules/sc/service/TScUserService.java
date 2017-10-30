@@ -14,9 +14,9 @@ import com.thinkgem.jeesite.modules.sc.entity.TScUser;
 import com.thinkgem.jeesite.modules.sc.dao.TScUserDao;
 
 /**
- * 商城用户表Service
+ * 用户信息表Service
  * @author dongge
- * @version 2017-10-18
+ * @version 2017-10-30
  */
 @Service
 @Transactional(readOnly = true)

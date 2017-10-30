@@ -5,8 +5,10 @@
 	<sql id="tScUserColumns">
 		a.id AS "id",
 		a.sc_name AS "scName",
+		a.sc_password AS "scPassword",
 		a.sc_sex AS "scSex",
 		a.sc_phone AS "scPhone",
+		a.sc_email AS "scEmail",
 		a.sc_qq AS "scQq",
 		a.sc_wx AS "scWx",
 		a.sc_createdate AS "scCreatedate",
@@ -72,8 +74,10 @@
 		INSERT INTO t_sc_user(
 			id,
 			sc_name,
+			sc_password,
 			sc_sex,
 			sc_phone,
+			sc_email,
 			sc_qq,
 			sc_wx,
 			sc_createdate,
@@ -89,8 +93,10 @@
 		) VALUES (
 			#{id},
 			#{scName},
+			#{scPassword},
 			#{scSex},
 			#{scPhone},
+			#{scEmail},
 			#{scQq},
 			#{scWx},
 			#{scCreatedate},
@@ -109,8 +115,10 @@
 	<update id="update">
 		UPDATE t_sc_user SET 	
 			sc_name = #{scName},
+			sc_password = #{scPassword},
 			sc_sex = #{scSex},
 			sc_phone = #{scPhone},
+			sc_email = #{scEmail},
 			sc_qq = #{scQq},
 			sc_wx = #{scWx},
 			sc_createdate = #{scCreatedate},
